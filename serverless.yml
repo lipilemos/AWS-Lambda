@@ -1,0 +1,388 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+org: lipilemos
+app: backend-traduzap
+service: backend-traduzap
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  #memorySyze: 256
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - s3:GetObject
+  #       - s3:PutObject
+  #     Resource:
+  #       - "arn:aws:s3:::*"
+
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+
+# you can add statements to the Lambda function's IAM Role here
+#  iam:
+#    role:
+#      statements:
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:ListBucket"
+#          Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:PutObject"
+#          Resource:
+#            Fn::Join:
+#              - ""
+#              - - "arn:aws:s3:::"
+#                - "Ref" : "ServerlessDeploymentBucket"
+#                - "/*"
+
+# you can define service wide environment variables here
+  environment:
+    MONGO_USER: outrafacefe
+    MONGO_PASS: LxwdhSeDdbs08uBS
+    JWT_SECRET: 88yw78357sx9
+    #AWS_ACCESS_KEY: AKIATK4EMZMJ3BUPJKO6
+    #AWS_SECRET_KEY: 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
+
+# you can add packaging information here
+#package:
+#  patterns:
+#    - '!exclude-me.js'
+#    - '!exclude-me-dir/**'
+#    - include-me.js
+#    - include-me-dir/**
+
+functions:  
+  test:
+    handler: handler.test
+    events:
+      - http:
+          path: /
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getAllTypesPlans:
+    handler: handler.getAllTypesPlans
+    events:
+      - http:
+          path: plans/types
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getTypesPlansById:
+    handler: handler.getTypesPlansById
+    events:
+      - http:
+          path: plans/types/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getAllPlans:
+    handler: handler.getAllPlans
+    events:
+      - http:
+          path: plans/
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getUserPlans:
+    handler: handler.getUserPlans
+    events:
+      - http:
+          path: plans/user/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getPlansById:
+    handler: handler.getPlansById
+    events:
+      - http:
+          path: plans/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  updatePlans:
+    handler: handler.updatePlans
+    events:
+      - http:
+          path: plans/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  updateUsageAPI:
+    handler: handler.updateUsageAPI
+    events:
+      - http:
+          path: plans/usageAPI/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  resetUsageAPI:
+    handler: handler.resetUsageAPI
+    events:
+      - http:
+          path: plans/reset
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  updateUsageUse:
+    handler: handler.updateUsageUse
+    events:
+      - http:
+          path: plans/updateUsageUse/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getAllConfiguration:
+    handler: handler.getAllConfiguration
+    events:
+      - http:
+          path: configuration/getAll
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getUserConfiguration:
+    handler: handler.getUserConfiguration
+    events:
+      - http:
+          path: configuration/user/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getConfigurationByPhone:
+    handler: handler.getConfigurationByPhone
+    events:
+      - http:
+          path: configuration/getByPhone/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getConfigurationByIdApp:
+    handler: handler.getConfigurationByIdApp
+    events:
+      - http:
+          path: configuration/app/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  updateActiveConfiguration:
+    handler: handler.updateActiveConfiguration
+    events:
+      - http:
+          path: configuration/active/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  updateQrCode:
+    handler: handler.updateQrCode
+    events:
+      - http:
+          path: configuration/addQrCode/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  clearQrCode:  
+    handler: handler.clearQrCode
+    events:
+      - http:
+          path: configuration/clearQrCode/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  register:
+    handler: handler.register
+    events:
+      - http:
+          path: users/register
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  login:
+    handler: handler.login
+    events:
+      - http:        
+          path: users/login
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getCurrentUser:
+    handler: handler.getCurrentUser
+    events:
+      - http:
+          path: users/profile
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  getUserById:
+    handler: handler.getUserById
+    events:
+      - http:
+          path: users/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: users/
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Access-Control-Allow-Origin
+            allowCredentials: false
+      # - s3:
+      #   bucket: traduzap
+      #   event: s3:ObjectCreated:*
+      #   rules: 
+      #     - prefix: uploads/
+      #     - sufixx: .jpg
+      # - s3:
+      #   bucket: traduzap
+      #   event: s3:ObjectCreated:*
+      #   rules: 
+      #     - prefix: uploads/
+      #     - sufixx: .png
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - httpApi:
+#          path: /users/create
+#          method: get
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+#      - alb:
+#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
+#          priority: 1
+#          conditions:
+#            host: example.com
+#            path: /hello
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
