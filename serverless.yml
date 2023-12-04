@@ -66,9 +66,9 @@ provider:
 
 # you can define service wide environment variables here
   environment:
-    MONGO_USER: outrafacefe
-    MONGO_PASS: LxwdhSeDdbs08uBS
-    JWT_SECRET: 88yw78357sx9
+    MONGO_USER: outrafacefex
+    MONGO_PASS: xLxwdhSeDdbs08uBS
+    JWT_SECRET: 88yw78357sx9x
     #AWS_ACCESS_KEY: AKIATK4EMZMJ3BUPJKO6
     #AWS_SECRET_KEY: 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
 
